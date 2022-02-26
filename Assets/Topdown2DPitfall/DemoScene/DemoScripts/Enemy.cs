@@ -3,10 +3,12 @@ using UnityEngine;
 
 public class Enemy : MonoBehaviour, IPitfallCheck, IPitfallObject
 {
-    public float speed = 7f;
+    public float speed = 4f;
     private Rigidbody2D rb;
     private bool isMovable = true;
     private Vector2 moveVelocity;
+
+    public GameObject dest;
 
     void Start()
     {
@@ -15,23 +17,20 @@ public class Enemy : MonoBehaviour, IPitfallCheck, IPitfallObject
 
     void Update()
     {
-        if (!isMovable)
-        {
-            MovementInput(Vector2.zero);
-            return;
-        }
-        Vector2 input = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
-        MovementInput(input);
+        float step = speed * Time.deltaTime; // calculate distance to move
+        transform.position = Vector3.MoveTowards(transform.position, dest.transform.position, step);
+
+        // Check 
     }
 
     void FixedUpdate()
     {
-        rb.MovePosition(rb.position + moveVelocity * Time.fixedDeltaTime);
+        // rb.MovePosition(rb.position + moveVelocity * Time.fixedDeltaTime);
     }
 
     private void MovementInput(Vector2 moveInput)
     {
-        moveVelocity = moveInput.normalized * speed;
+        // moveVelocity = moveInput.normalized * speed;
     }
 
     public bool PitfallConditionCheck()
