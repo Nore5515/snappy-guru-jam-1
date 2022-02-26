@@ -8,6 +8,7 @@ public class Mouse : MonoBehaviour
 {
 
     public Tilemap world;
+    public SAP2D.SAP2DPathfinder sapPF;
     // Start is called before the first frame update
     void Start()
     {
@@ -23,6 +24,7 @@ public class Mouse : MonoBehaviour
         if (Input.GetMouseButton(0))
         {
             world.SetTile(mousePos, null);
+            sapPF.CalculateColliders();
         }
     }
 
