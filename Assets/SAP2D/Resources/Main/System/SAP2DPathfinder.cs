@@ -1,19 +1,22 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
 
-namespace SAP2D {
+namespace SAP2D
+{
 
     [AddComponentMenu("Pathfinding 2D/SAP2D Pathfinder")]
-    public class SAP2DPathfinder : Singleton<SAP2DPathfinder> 
+
+    public class SAP2DPathfinder : Singleton<SAP2DPathfinder>
     {
         public int gridsCount => grids.Count;
 
-        #if UNITY_EDITOR
+#if UNITY_EDITOR
         //editor data
         public List<SAP2D.Editors.SAP_GraphDrawer> GraphDrawers = new List<Editors.SAP_GraphDrawer>();
         public SAP2D.Editors.SAP2DEditorSettings EditorSettings;
-        #endif
+#endif
 
+        public EnemySpawner es;
         [SerializeField] private List<SAP_GridSource> grids = new List<SAP_GridSource>();
 
         public void AddGrid(int width = 10, int height = 10)
@@ -36,7 +39,7 @@ namespace SAP2D {
             grids.Remove(grid);
         }
 
-        public SAP_GridSource GetGrid(int index) 
+        public SAP_GridSource GetGrid(int index)
         {
             if (index < 0 || index > grids.Count)
             {
@@ -48,11 +51,11 @@ namespace SAP2D {
 
         public void CalculateColliders(SAP_TileData startTile = null, SAP_TileData endTile = null)
         {
-            foreach (SAP_GridSource grid in grids) 
+            foreach (SAP_GridSource grid in grids)
                 grid.CalculateColliders(startTile, endTile);
         }
 
-        public Vector2[] FindPath(Vector2 from, Vector2 to, SAP2DPathfindingConfig config)
+        public Vector2[] FindPath(Vector2 from, Vector2 to, SAP2DPathfindingConfig config, EnemySpawner es)
         {
             SAP_GridSource grid = GetGrid(config.GridIndex);
             SAP_TileData startTile = grid.GetTileDataAtWorldPosition(from);
@@ -64,11 +67,11 @@ namespace SAP2D {
             List<SAP_TileData> openList = new List<SAP_TileData>();
             List<SAP_TileData> closedList = new List<SAP_TileData>();
 
-            while(closedList.Contains(targetTile) == false)
+            while (closedList.Contains(targetTile) == false)
             {
                 List<SAP_TileData> neighbors = grid.GetNeighborTiles(currentTile, config.CutCorners);
 
-                foreach(SAP_TileData neighbor in neighbors)
+                foreach (SAP_TileData neighbor in neighbors)
                 {
                     if (neighbor.isWalkable == false || closedList.Contains(neighbor) == true) continue;
                     if (openList.Contains(neighbor) == true)
@@ -93,14 +96,25 @@ namespace SAP2D {
                 if (currentTile == null)
                 {
                     Debug.LogError("Path not found");
+                    if (es.getIsPath())
+                    {
+                        es.setIsPath(false);
+                    }
                     return null;
+                }
+                else
+                {
+                    if (!es.getIsPath())
+                    {
+                        es.setIsPath(true);
+                    }
                 }
             }
             return PathRecovery(startTile, targetTile);
         }
 
         private Vector2[] PathRecovery(SAP_TileData startTile, SAP_TileData targetTile)
-        { 
+        {
             SAP_TileData current = targetTile;
 
             List<Vector2> path = new List<Vector2>();
@@ -119,9 +133,9 @@ namespace SAP2D {
             if (openList.Count == 0) return null;
 
             SAP_TileData result = openList[0];
-            foreach(SAP_TileData tile in openList)
+            foreach (SAP_TileData tile in openList)
             {
-                if(tile.F < result.F) result = tile;
+                if (tile.F < result.F) result = tile;
             }
             return result;
         }

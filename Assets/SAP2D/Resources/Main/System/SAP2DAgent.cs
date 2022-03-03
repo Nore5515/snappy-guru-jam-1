@@ -2,7 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace SAP2D {
+namespace SAP2D
+{
 
     [AddComponentMenu("Pathfinding 2D/SAP2D Agent")]
     public class SAP2DAgent : MonoBehaviour
@@ -10,6 +11,8 @@ namespace SAP2D {
         public SAP2DPathfindingConfig Config;
         public bool MouseControl;
         public Transform Target;
+
+        public EnemySpawner es;
 
         [Space(10)]
         public bool CanMove = true;
@@ -87,7 +90,7 @@ namespace SAP2D {
                 else if (CanSearch && !changeSearch)
                 {
 
-                    StartCoroutine(FindPath());
+                    StartCoroutine(FindPath(es));
 
                     changeSearch = true;
                 }
@@ -98,19 +101,19 @@ namespace SAP2D {
             }
         }
 
-        private IEnumerator FindPath()
+        private IEnumerator FindPath(EnemySpawner es)
         { //path loop update
 
             if (isTargetWalkable())
                 //if the object is already in the target point, the path should not be searched
                 if (grid.GetTileDataAtWorldPosition(transform.position).WorldPosition != grid.GetTileDataAtWorldPosition(Target.position).WorldPosition)
                 {
-                    path = pathfinder.FindPath(transform.position, Target.position, Config);
+                    path = pathfinder.FindPath(transform.position, Target.position, Config, es);
                     pathIndex = 0;
                 }
             yield return new WaitForSeconds(PathUpdateRate);
 
-            StartCoroutine(FindPath());
+            StartCoroutine(FindPath(es));
         }
 
         private void Move()
