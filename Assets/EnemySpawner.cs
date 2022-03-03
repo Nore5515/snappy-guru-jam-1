@@ -6,6 +6,7 @@ public class EnemySpawner : MonoBehaviour
 {
     public Enemy e;
     public bool isPath;
+    public Transform target;
 
     public bool getIsPath()
     {
@@ -27,7 +28,9 @@ public class EnemySpawner : MonoBehaviour
         if (isPath)
         {
             // Spawn Enemy
-            Instantiate(e, this.transform.position, Quaternion.identity);
+            Enemy enemy = Instantiate(e, this.transform.position, Quaternion.identity);
+            enemy.GetComponent<SAP2D.SAP2DAgent>().Target = target;
+            enemy.GetComponent<SAP2D.SAP2DAgent>().es = this;
         }
     }
 
