@@ -112,3 +112,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 988fee96e32ab4322ae56b588067d6e2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  enabled: 1
+  rechargeDelay: 3

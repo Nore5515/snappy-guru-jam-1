@@ -20,10 +20,6 @@ public class Player : MonoBehaviour, IPitfallCheck, IPitfallObject {
         MovementInput(input);
     }
 
-    void FixedUpdate() {
-        rb.MovePosition(rb.position + moveVelocity * Time.fixedDeltaTime);
-    }
-
     private void MovementInput(Vector2 moveInput) {
         moveVelocity = moveInput.normalized * speed;
     }
@@ -38,5 +34,9 @@ public class Player : MonoBehaviour, IPitfallCheck, IPitfallObject {
 
     public void PitfallResultingAfter() {
         isMovable = true;
+    }
+
+    private void OnTriggerEnter2D(Collider2D other) {
+        Destroy(other.transform.parent.gameObject);
     }
 }
