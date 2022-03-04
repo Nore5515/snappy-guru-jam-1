@@ -8,6 +8,9 @@ public class UI_controller : MonoBehaviour
 
     public Text hpText;
     public Text soulsText;
+    public Text killsText;
+
+    private int kills = 0;
 
     /// <summary>
     /// Test test test.
@@ -25,6 +28,11 @@ public class UI_controller : MonoBehaviour
     public void setHPText(string _hpText)
     {
         hpText.text = _hpText;
+    }
+
+    public void addKill(){
+        kills += 1;
+        killsText.text = "Kills: " + kills;
     }
 
 }
