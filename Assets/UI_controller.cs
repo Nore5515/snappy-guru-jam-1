@@ -7,6 +7,15 @@ public class UI_controller : MonoBehaviour
 {
 
     public Text hpText;
+    public Text soulsText;
+
+    /// <summary>
+    /// Test test test.
+    /// </summary>
+    public void setSoulsText(int souls)
+    {
+        soulsText.text = "Souls: " + souls;
+    }
 
     public string getHPText()
     {

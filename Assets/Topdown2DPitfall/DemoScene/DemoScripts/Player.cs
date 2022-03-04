@@ -11,6 +11,7 @@ public class Player : MonoBehaviour, IPitfallCheck, IPitfallObject
     private Vector2 moveVelocity;
 
     public int hp = 10;
+    public int souls = 10;
     public UI_controller uicon;
 
     void Start()
@@ -47,6 +48,16 @@ public class Player : MonoBehaviour, IPitfallCheck, IPitfallObject
     public void PitfallResultingAfter()
     {
         isMovable = true;
+    }
+
+    public void setSouls(int _souls)
+    {
+        souls = _souls;
+        uicon.setSoulsText(souls);
+    }
+    public int getSouls()
+    {
+        return souls;
     }
 
     private void OnTriggerEnter2D(Collider2D other)
