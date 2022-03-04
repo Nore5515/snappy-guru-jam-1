@@ -317,6 +317,7 @@ GameObject:
   m_Component:
   - component: {fileID: 775955862}
   - component: {fileID: 775955863}
+  - component: {fileID: 775955864}
   m_Layer: 0
   m_Name: title
   m_TagString: Untagged
@@ -389,6 +390,14 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!222 &775955864
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 775955861}
+  m_CullTransparentMesh: 1
 --- !u!1 &898583054
 GameObject:
   m_ObjectHideFlags: 0

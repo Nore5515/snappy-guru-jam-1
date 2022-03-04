@@ -1,18 +1,27 @@
 ﻿using Nevelson.Topdown2DPitfall.Assets.Scripts.Utils;
 using UnityEngine;
-
-public class Player : MonoBehaviour, IPitfallCheck, IPitfallObject {
+using UnityEngine.SceneManagement;
+using System.Collections;
+using System.Collections.Generic;
+public class Player : MonoBehaviour, IPitfallCheck, IPitfallObject
+{
     public float speed = 7f;
     private Rigidbody2D rb;
     private bool isMovable = true;
     private Vector2 moveVelocity;
 
-    void Start() {
+    public int hp = 10;
+    public UI_controller uicon;
+
+    void Start()
+    {
         rb = GetComponent<Rigidbody2D>();
     }
 
-    void Update() {
-        if (!isMovable) {
+    void Update()
+    {
+        if (!isMovable)
+        {
             MovementInput(Vector2.zero);
             return;
         }
@@ -20,23 +29,45 @@ public class Player : MonoBehaviour, IPitfallCheck, IPitfallObject {
         MovementInput(input);
     }
 
-    private void MovementInput(Vector2 moveInput) {
+    private void MovementInput(Vector2 moveInput)
+    {
         moveVelocity = moveInput.normalized * speed;
     }
 
-    public bool PitfallConditionCheck() {
+    public bool PitfallConditionCheck()
+    {
         return true;
     }
 
-    public void PitfallActionsBefore() {
+    public void PitfallActionsBefore()
+    {
         isMovable = false;
     }
 
-    public void PitfallResultingAfter() {
+    public void PitfallResultingAfter()
+    {
         isMovable = true;
     }
 
-    private void OnTriggerEnter2D(Collider2D other) {
+    private void OnTriggerEnter2D(Collider2D other)
+    {
         Destroy(other.transform.parent.gameObject);
+        hp -= 1;
+        uicon.setHPText("HP: " + hp);
+        if (hp <= 0)
+        {
+            StartCoroutine(LoadYourAsyncScene());
+        }
+    }
+
+    IEnumerator LoadYourAsyncScene()
+    {
+        AsyncOperation asyncLoad = SceneManager.LoadSceneAsync("Title");
+
+        // Wait until the asynchronous scene fully loads
+        while (!asyncLoad.isDone)
+        {
+            yield return null;
+        }
     }
 }
