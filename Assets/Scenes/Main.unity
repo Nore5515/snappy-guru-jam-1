@@ -135,7 +135,7 @@ GameObject:
   - component: {fileID: 335381039}
   - component: {fileID: 335381038}
   - component: {fileID: 335381037}
-  m_Layer: 5
+  m_Layer: 8
   m_Name: BombButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4852,7 +4852,7 @@ GameObject:
   - component: {fileID: 1089587549}
   - component: {fileID: 1089587551}
   - component: {fileID: 1089587550}
-  m_Layer: 5
+  m_Layer: 8
   m_Name: Text
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4976,7 +4976,7 @@ GameObject:
   - component: {fileID: 1329110219}
   - component: {fileID: 1329110221}
   - component: {fileID: 1329110220}
-  m_Layer: 5
+  m_Layer: 8
   m_Name: Text
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5079,7 +5079,7 @@ MonoBehaviour:
     ShowGridParameters: 1
     ShowPathfindingSettings: 1
     ShowGridGraphSettigs: 0
-    ScaleLvl: 1
+    ScaleLvl: 2
   EditorSettings: {fileID: 11400000, guid: f54fe2e0866d59148bb49fcb7b6fd41b, type: 2}
   es: {fileID: 0}
   grids:
@@ -5443,7 +5443,7 @@ GameObject:
   - component: {fileID: 2052505597}
   - component: {fileID: 2052505596}
   - component: {fileID: 2052505595}
-  m_Layer: 5
+  m_Layer: 8
   m_Name: SpikeButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
