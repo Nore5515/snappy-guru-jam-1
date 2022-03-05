@@ -1,9 +1,8 @@
-﻿using Nevelson.Topdown2DPitfall.Assets.Scripts.Utils;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.SceneManagement;
 using System.Collections;
 using System.Collections.Generic;
-public class Player : MonoBehaviour, IPitfallCheck, IPitfallObject
+public class Player : MonoBehaviour
 {
     public float speed = 7f;
     private Rigidbody2D rb;
