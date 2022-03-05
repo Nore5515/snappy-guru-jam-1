@@ -56,6 +56,7 @@ public class Mouse : MonoBehaviour
                     player.setSouls(player.getSouls() - 5);
                     SpikeTrap st = Instantiate(spiketrap, newPos, Quaternion.identity).GetComponent<SpikeTrap>();
                     st.player = player;
+                    sapPF.CalculateColliders();
                 }
             }
             else
@@ -65,6 +66,7 @@ public class Mouse : MonoBehaviour
                     player.setSouls(player.getSouls() - 1);
                     Trap t = Instantiate(trap, newPos, Quaternion.identity).GetComponent<Trap>();
                     t.player = player;
+                    sapPF.CalculateColliders();
                 }
 
             }
