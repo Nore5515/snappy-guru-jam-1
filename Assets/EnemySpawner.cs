@@ -8,6 +8,8 @@ public class EnemySpawner : MonoBehaviour
     public bool isPath;
     public Transform target;
 
+    public UI_controller uicon;
+
     public bool getIsPath()
     {
         return isPath;
@@ -15,6 +17,7 @@ public class EnemySpawner : MonoBehaviour
     public void setIsPath(bool _isPath)
     {
         isPath = _isPath;
+        uicon.setPath(isPath);
     }
 
     // Called Once

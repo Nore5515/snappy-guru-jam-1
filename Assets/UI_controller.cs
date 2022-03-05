@@ -9,6 +9,7 @@ public class UI_controller : MonoBehaviour
     public Text hpText;
     public Text soulsText;
     public Text killsText;
+    public Text pathText;
 
     private int kills = 0;
 
@@ -30,9 +31,23 @@ public class UI_controller : MonoBehaviour
         hpText.text = _hpText;
     }
 
-    public void addKill(){
+    public void addKill()
+    {
         kills += 1;
         killsText.text = "Kills: " + kills;
+    }
+
+    public void setPath(bool isPath)
+    {
+        if (isPath)
+        {
+            pathText.text = "Path Valid";
+        }
+        else
+        {
+            pathText.text = "Path inValid";
+
+        }
     }
 
 }
