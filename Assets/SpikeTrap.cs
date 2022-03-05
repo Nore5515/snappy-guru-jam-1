@@ -9,6 +9,8 @@ public class SpikeTrap : MonoBehaviour
 
     private Color baseColor;
 
+    public Player player;
+
     private void Start()
     {
         baseColor = this.GetComponent<SpriteRenderer>().color;
@@ -19,6 +21,8 @@ public class SpikeTrap : MonoBehaviour
         if (enabled)
         {
             Destroy(other.transform.parent.gameObject);
+            player.setSouls(player.getSouls() + 1);
+            player.uicon.addKill();
             enabled = false;
             this.GetComponent<SpriteRenderer>().color = Color.grey;
             Invoke("toggledEnabled", rechargeDelay);

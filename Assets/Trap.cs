@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class Trap : MonoBehaviour
 {
+
+    public Player player;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -18,6 +21,8 @@ public class Trap : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
+        player.uicon.addKill();
+        player.setSouls(player.getSouls() + 1);
         Destroy(other.transform.parent.gameObject);
         Destroy(this.gameObject);
     }
