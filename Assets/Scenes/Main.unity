@@ -4746,6 +4746,7 @@ MonoBehaviour:
   isPath: 1
   target: {fileID: 409039200}
   uicon: {fileID: 1725121961}
+  sapPF: {fileID: 1574063349}
 --- !u!4 &1031168517
 Transform:
   m_ObjectHideFlags: 0
@@ -5079,7 +5080,7 @@ MonoBehaviour:
     ShowGridParameters: 1
     ShowPathfindingSettings: 1
     ShowGridGraphSettigs: 0
-    ScaleLvl: 2
+    ScaleLvl: 1
   EditorSettings: {fileID: 11400000, guid: f54fe2e0866d59148bb49fcb7b6fd41b, type: 2}
   es: {fileID: 0}
   grids:

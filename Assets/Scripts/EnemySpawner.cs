@@ -9,6 +9,7 @@ public class EnemySpawner : MonoBehaviour
     public Transform target;
 
     public UI_controller uicon;
+    public SAP2D.SAP2DPathfinder sapPF;
 
     public bool getIsPath()
     {
@@ -30,6 +31,7 @@ public class EnemySpawner : MonoBehaviour
     {
         if (isPath)
         {
+            sapPF.CalculateColliders();
             // Spawn Enemy
             Enemy enemy = Instantiate(e, this.transform.position, Quaternion.identity);
             enemy.GetComponent<SAP2D.SAP2DAgent>().Target = target;
