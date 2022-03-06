@@ -13,6 +13,7 @@ public class SpikeTrap : MonoBehaviour
 
     public Player player;
 
+
     private void Start()
     {
         baseColor = this.GetComponent<SpriteRenderer>().color;
