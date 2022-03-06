@@ -841,7 +841,7 @@ MonoBehaviour:
   Target: {fileID: 0}
   es: {fileID: 0}
   CanMove: 1
-  MovementSpeed: 3
+  MovementSpeed: 1.5
   RotationSpeed: 0
   isMoving: 0
   pathIndex: 0
