@@ -23,6 +23,7 @@ public class Mouse : MonoBehaviour
     public SAP2D.SAP2DPathfinder sapPF;
     public GameObject trap;
     public GameObject spiketrap;
+    public GameObject arrowtrap;
     public GameObject skeleton;
     public Player player;
 
@@ -47,6 +48,7 @@ public class Mouse : MonoBehaviour
         optionList["isTile"] = false;
         optionList["isBomb"] = false;
         optionList["isSkeleton"] = false;
+        optionList["isArrow"] = false;
         body = GetComponent<Rigidbody2D>();
     }
 
@@ -109,6 +111,17 @@ public class Mouse : MonoBehaviour
                 }
 
             }
+            else if (optionList["isArrow"])
+            {
+                if (player.getSouls() >= 4)
+                {
+                    player.setSouls(player.getSouls() - 4);
+                    ArrowTrap at = Instantiate(arrowtrap, newPos, Quaternion.identity).GetComponent<ArrowTrap>();
+                    at.player = player;
+                    sapPF.CalculateColliders();
+                }
+
+            }
         }
     }
 
@@ -158,6 +171,10 @@ public class Mouse : MonoBehaviour
     public void selectingSkeleton()
     {
         setOneOptionTrue("isSkeleton");
+    }
+    public void selectingArrowTrap()
+    {
+        setOneOptionTrue("isArrow");
     }
 
     //Returns 'true' if we touched or hovering on Unity UI element.
