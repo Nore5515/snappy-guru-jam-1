@@ -14,6 +14,8 @@ public class Mouse : MonoBehaviour
     public GameObject spiketrap;
     public Player player;
 
+    public Tile dirtTile;
+
     public bool isSpike = false;
     public bool isTile = false;
     public bool isBomb = false;
@@ -25,9 +27,9 @@ public class Mouse : MonoBehaviour
     void Start()
     {
         UILayer = LayerMask.NameToLayer("BlockClickUI");
-        optionList.Add("isSpike", false);
-        optionList.Add("isTile", false);
-        optionList.Add("isBomb", false);
+        optionList["isSpike"] = false;
+        optionList["isTile"] = false;
+        optionList["isBomb"] = false;
     }
 
     // Update is called once per frame
@@ -56,11 +58,12 @@ public class Mouse : MonoBehaviour
                     sapPF.CalculateColliders();
                 }
             }
-            else if (isTile)
+            else if (optionList["isTile"])
             {
-                world.SetTile(mousePos, null);
+                // Debug.Log(world.GetUsedTilesCount());
+                world.SetTile(mousePos, dirtTile);
             }
-            else if (isBomb)
+            else if (optionList["isBomb"])
             {
                 if (player.getSouls() >= 1)
                 {
@@ -78,6 +81,7 @@ public class Mouse : MonoBehaviour
     // Function calls that handle what button to shop you have selected last.
     public void setOneOptionTrue(string optionName)
     {
+        Debug.Log("Seting only " + optionName + " as true.");
         foreach (string key in optionList.Keys)
         {
             if (key == optionName)
@@ -92,46 +96,15 @@ public class Mouse : MonoBehaviour
     }
     public void selectingSpike()
     {
-        foreach (string key in optionList.Keys)
-        {
-            if (key == "isSpike")
-            {
-                optionList[key] = true;
-            }
-            else
-            {
-                optionList[key] = false;
-
-            }
-        }
+        setOneOptionTrue("isSpike");
     }
     public void selectingTile()
     {
-        foreach (Option option in optionList)
-        {
-            if (option.title == "isTile")
-            {
-                option.enabled = true;
-            }
-            else
-            {
-                option.enabled = false;
-            }
-        }
+        setOneOptionTrue("isTile");
     }
     public void selectingBomb()
     {
-        foreach (Option option in optionList)
-        {
-            if (option.title == "isBomb")
-            {
-                option.enabled = true;
-            }
-            else
-            {
-                option.enabled = false;
-            }
-        }
+        setOneOptionTrue("isBomb");
     }
 
     //Returns 'true' if we touched or hovering on Unity UI element.
