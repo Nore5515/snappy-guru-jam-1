@@ -1,16 +1,25 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
 
 public class Enemy : MonoBehaviour
 {
-    public float speed = 4f;
-    private Rigidbody2D rb;
-    private bool isMovable = true;
-    private Vector2 moveVelocity;
+    public int HP = 10;
+    public Slider hpBar;
 
-    // public GameObject dest;
-
-    void Start()
+    private void Start()
     {
-        rb = GetComponent<Rigidbody2D>();
+        hpBar.maxValue = HP;
+        hpBar.minValue = 0;
+        hpBar.value = HP;
+    }
+
+    public void setHP(int _HP)
+    {
+        HP = _HP;
+        hpBar.value = HP;
+    }
+    public int getHP()
+    {
+        return HP;
     }
 }

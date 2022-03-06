@@ -7,22 +7,20 @@ public class Trap : MonoBehaviour
 
     public Player player;
 
-    // Start is called before the first frame update
-    void Start()
-    {
-
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-
-    }
+    public int dmg = 10;
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        player.uicon.addKill();
-        player.setSouls(player.getSouls() + 1);
+        if (other.transform.parent.GetComponent<Enemy>().getHP() > dmg)
+        {
+            other.transform.parent.GetComponent<Enemy>().setHP(other.transform.parent.GetComponent<Enemy>().getHP() - dmg);
+        }
+        else
+        {
+            Destroy(other.transform.parent.gameObject);
+            player.setSouls(player.getSouls() + 1);
+            player.uicon.addKill();
+        }
         Destroy(other.transform.parent.gameObject);
         Destroy(this.gameObject);
     }
