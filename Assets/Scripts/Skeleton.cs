@@ -9,6 +9,18 @@ public class Skeleton : MonoBehaviour
 
     public int dmg = 3;
 
+    public float speed = 1f;
+
+    public void MovetoTarget(GameObject target)
+    {
+        // Only move if the position of the cube and sphere are far enough away.
+        if (Vector3.Distance(transform.position, target.transform.position) >= 0.01f)
+        {
+            float step = speed * Time.deltaTime; // calculate distance to move
+            transform.position = Vector3.MoveTowards(transform.position, target.transform.position, step);
+        }
+    }
+
     private void OnTriggerEnter2D(Collider2D other)
     {
         if (other.transform.parent.GetComponent<Enemy>().getHP() > dmg)
