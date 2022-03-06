@@ -35,6 +35,10 @@ public class Mouse : MonoBehaviour
     public Dictionary<string, bool> optionList = new Dictionary<string, bool>();
     int UILayer;
 
+    float minFov = 15f;
+    float maxFov = 90f;
+    float sensitivity = 10f;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -52,6 +56,9 @@ public class Mouse : MonoBehaviour
 
         horizontal = Input.GetAxisRaw("Horizontal"); // -1 is left
         vertical = Input.GetAxisRaw("Vertical"); // -1 is down
+
+        float newSize = Camera.main.orthographicSize + (Input.mouseScrollDelta.y * sensitivity);
+        Camera.main.orthographicSize = Mathf.Clamp(newSize, 3.0f, 10.0f);
 
         Vector3Int mousePos = GetMousePosition();
 
