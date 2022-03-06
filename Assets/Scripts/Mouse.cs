@@ -60,8 +60,8 @@ public class Mouse : MonoBehaviour
             }
             else if (optionList["isTile"])
             {
-                // Debug.Log(world.GetUsedTilesCount());
                 world.SetTile(mousePos, dirtTile);
+                sapPF.CalculateColliders();
             }
             else if (optionList["isBomb"])
             {
@@ -81,18 +81,20 @@ public class Mouse : MonoBehaviour
     // Function calls that handle what button to shop you have selected last.
     public void setOneOptionTrue(string optionName)
     {
-        Debug.Log("Seting only " + optionName + " as true.");
+        Debug.Log("KEYS: " + optionList["isSpike"]);
+        Dictionary<string, bool> newList = new Dictionary<string, bool>();
         foreach (string key in optionList.Keys)
         {
             if (key == optionName)
             {
-                optionList[key] = true;
+                newList[key] = true;
             }
             else
             {
-                optionList[key] = false;
+                newList[key] = false;
             }
         }
+        optionList = newList;
     }
     public void selectingSpike()
     {
