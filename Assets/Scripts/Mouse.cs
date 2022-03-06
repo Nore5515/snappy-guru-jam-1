@@ -5,8 +5,19 @@ using UnityEngine.Tilemaps;
 using UnityEngine.UIElements;
 using UnityEngine.EventSystems;
 
+
+
+
+
 public class Mouse : MonoBehaviour
 {
+
+    float horizontal;
+    float vertical;
+    float moveLimiter = 0.7f;
+    public float cameraMoveSpeed = 20.0f;
+    public Rigidbody2D body;
+
 
     public Tilemap world;
     public SAP2D.SAP2DPathfinder sapPF;
@@ -32,11 +43,15 @@ public class Mouse : MonoBehaviour
         optionList["isTile"] = false;
         optionList["isBomb"] = false;
         optionList["isSkeleton"] = false;
+        body = GetComponent<Rigidbody2D>();
     }
 
     // Update is called once per frame
     void Update()
     {
+
+        horizontal = Input.GetAxisRaw("Horizontal"); // -1 is left
+        vertical = Input.GetAxisRaw("Vertical"); // -1 is down
 
         Vector3Int mousePos = GetMousePosition();
 
@@ -88,6 +103,18 @@ public class Mouse : MonoBehaviour
 
             }
         }
+    }
+
+    private void FixedUpdate()
+    {
+        if (horizontal != 0 && vertical != 0) // Check for diagonal movement
+        {
+            // limit movement speed diagonally, so you move at 70% speed
+            horizontal *= moveLimiter;
+            vertical *= moveLimiter;
+        }
+
+        body.velocity = new Vector2(horizontal * cameraMoveSpeed, vertical * cameraMoveSpeed);
     }
 
 
