@@ -14,23 +14,22 @@ public class Mouse : MonoBehaviour
     public GameObject spiketrap;
     public Player player;
 
+    public Tile dirtTile;
+
     public bool isSpike = false;
+    public bool isTile = false;
+    public bool isBomb = false;
 
+    public Dictionary<string, bool> optionList = new Dictionary<string, bool>();
     int UILayer;
-
-    public void isSpikeTrue()
-    {
-        isSpike = true;
-    }
-    public void isSpikeFalse()
-    {
-        isSpike = false;
-    }
 
     // Start is called before the first frame update
     void Start()
     {
         UILayer = LayerMask.NameToLayer("BlockClickUI");
+        optionList["isSpike"] = false;
+        optionList["isTile"] = false;
+        optionList["isBomb"] = false;
     }
 
     // Update is called once per frame
@@ -49,7 +48,7 @@ public class Mouse : MonoBehaviour
         {
             Vector3 mouseWorldPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             Vector3 newPos = new Vector3(mouseWorldPos.x, mouseWorldPos.y, 0.0f);
-            if (isSpike)
+            if (optionList["isSpike"])
             {
                 if (player.getSouls() >= 5)
                 {
@@ -59,7 +58,12 @@ public class Mouse : MonoBehaviour
                     sapPF.CalculateColliders();
                 }
             }
-            else
+            else if (optionList["isTile"])
+            {
+                world.SetTile(mousePos, dirtTile);
+                sapPF.CalculateColliders();
+            }
+            else if (optionList["isBomb"])
             {
                 if (player.getSouls() >= 1)
                 {
@@ -71,6 +75,38 @@ public class Mouse : MonoBehaviour
 
             }
         }
+    }
+
+
+    // Function calls that handle what button to shop you have selected last.
+    public void setOneOptionTrue(string optionName)
+    {
+        Debug.Log("KEYS: " + optionList["isSpike"]);
+        Dictionary<string, bool> newList = new Dictionary<string, bool>();
+        foreach (string key in optionList.Keys)
+        {
+            if (key == optionName)
+            {
+                newList[key] = true;
+            }
+            else
+            {
+                newList[key] = false;
+            }
+        }
+        optionList = newList;
+    }
+    public void selectingSpike()
+    {
+        setOneOptionTrue("isSpike");
+    }
+    public void selectingTile()
+    {
+        setOneOptionTrue("isTile");
+    }
+    public void selectingBomb()
+    {
+        setOneOptionTrue("isBomb");
     }
 
     //Returns 'true' if we touched or hovering on Unity UI element.
