@@ -10,7 +10,7 @@ public class Player : MonoBehaviour
     private Vector2 moveVelocity;
 
     public int hp = 10;
-    public int souls = 10;
+    public int souls = 20;
     public UI_controller uicon;
 
     void Start()

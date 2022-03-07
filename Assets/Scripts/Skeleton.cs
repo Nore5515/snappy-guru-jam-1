@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class Skeleton : MonoBehaviour
 {
-
     public Player player;
 
     public int dmg = 3;

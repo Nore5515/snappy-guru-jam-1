@@ -310,7 +310,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 409039200}
-  - component: {fileID: 409039198}
   - component: {fileID: 409039199}
   - component: {fileID: 599332706}
   - component: {fileID: 409039197}
@@ -338,22 +337,6 @@ CircleCollider2D:
   m_Offset: {x: -0.038760617, y: 0}
   serializedVersion: 2
   m_Radius: 1.4185894
---- !u!114 &409039198
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 409039196}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9f1608275b1f24936909171428c22b95, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  speed: 7
-  hp: 10
-  souls: 10
-  uicon: {fileID: 1725121961}
 --- !u!212 &409039199
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -433,7 +416,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 0
   hp: 10
-  souls: 10
+  souls: 20
   uicon: {fileID: 1725121961}
 --- !u!1 &519420028
 GameObject:
@@ -842,7 +825,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 'Souls: 10'
+  m_Text: 'Souls: 20'
 --- !u!222 &810958071
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1504,7 +1487,7 @@ MonoBehaviour:
     ShowGridParameters: 1
     ShowPathfindingSettings: 1
     ShowGridGraphSettigs: 0
-    ScaleLvl: 4
+    ScaleLvl: 16
   EditorSettings: {fileID: 11400000, guid: f54fe2e0866d59148bb49fcb7b6fd41b, type: 2}
   es: {fileID: 0}
   grids:
