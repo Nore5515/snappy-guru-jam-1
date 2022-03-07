@@ -31,6 +31,6 @@ public class Arrow : MonoBehaviour
     private void Update()
     {
         float step = m_Speed * Time.deltaTime; // calculate distance to move
-        transform.position = Vector3.MoveTowards(transform.position, target.transform.position, step);
+        // transform.position = Vector3.MoveTowards(transform.position, target.transform.position, step);
     }
 }
