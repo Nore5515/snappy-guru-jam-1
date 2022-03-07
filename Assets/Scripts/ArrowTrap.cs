@@ -8,6 +8,17 @@ public class ArrowTrap : MonoBehaviour
     public Player player;
 
     public int dmg = 4;
+    public GameObject arrow;    // this is a reference to your projectile prefab
+
+    void Start()
+    {
+        InvokeRepeating("FireArrow", 1.0f, 1.0f);
+    }
+
+    void FireArrow()
+    {
+        Instantiate(arrow, this.transform.position, this.transform.rotation);
+    }
 
     private void OnTriggerEnter2D(Collider2D other)
     {
@@ -25,3 +36,7 @@ public class ArrowTrap : MonoBehaviour
         Destroy(this.gameObject);
     }
 }
+
+
+
+

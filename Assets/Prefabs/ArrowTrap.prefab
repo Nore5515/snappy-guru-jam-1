@@ -63,6 +63,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player: {fileID: 0}
   dmg: 4
+  arrow: {fileID: 9020658413102065638, guid: c921694f14b384508b82d7b72357ecbc, type: 3}
 --- !u!1 &5224395258370522779
 GameObject:
   m_ObjectHideFlags: 0
